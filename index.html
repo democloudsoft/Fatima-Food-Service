@@ -1360,6 +1360,282 @@
         width: 100%;
       }
     }
+  
+    /* Social Icons Only in Contact Section */
+    .social-icons-only-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 22px;
+    }
+
+    .social-icon-btn {
+      width: 52px;
+      height: 52px;
+      border-radius: var(--radius-md);
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .social-icon-btn .social-svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .social-icon-btn.social-facebook {
+      color: #1877F2;
+    }
+
+    .social-icon-btn.social-facebook:hover,
+    .social-icon-btn.social-facebook:active {
+      background-color: #1877F2;
+      color: #ffffff;
+      border-color: #1877F2;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .social-icon-btn.social-instagram {
+      color: #E1306C;
+    }
+
+    .social-icon-btn.social-instagram:hover,
+    .social-icon-btn.social-instagram:active {
+      background-color: #E1306C;
+      color: #ffffff;
+      border-color: #E1306C;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    /* Mobile Alignment & Sizing Perfection */
+    @media (max-width: 768px) {
+      .container {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      .section-padding {
+        padding-top: 48px;
+        padding-bottom: 48px;
+      }
+
+      .section-title-wrap {
+        margin-bottom: 32px;
+      }
+
+      /* Hero Content & Buttons */
+      #hero {
+        padding: 80px 16px 60px 16px;
+        min-height: auto;
+      }
+
+      .hero-subheading {
+        margin-bottom: 26px;
+        font-size: 1rem;
+      }
+
+      .hero-cta-group {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 360px;
+        margin: 0 auto;
+        gap: 12px;
+      }
+
+      .hero-cta-group .btn {
+        width: 100%;
+        min-height: 48px;
+        padding: 12px 20px;
+        font-size: 0.95rem;
+      }
+
+      /* About Section */
+      .about-image-wrap {
+        min-height: 280px !important;
+        height: 280px !important;
+        width: 100%;
+      }
+
+      .about-highlights {
+        grid-template-columns: 1fr !important;
+        gap: 12px;
+      }
+
+      .about-highlight-card {
+        padding: 14px;
+      }
+
+      /* Menu Cards & Buttons */
+      .menu-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+      }
+
+      .menu-card-body {
+        padding: 16px;
+      }
+
+      .menu-card-order-btn {
+        width: 100% !important;
+        min-height: 44px;
+      }
+
+      /* Packaging Section */
+      .packaging-gallery {
+        grid-template-columns: 1fr !important;
+        gap: 14px;
+      }
+
+      .packaging-img-card img {
+        height: 220px !important;
+      }
+
+      /* Monthly Menu Schedule Cards */
+      .schedule-days-grid {
+        grid-template-columns: 1fr !important;
+        gap: 14px !important;
+      }
+
+      .schedule-day-card {
+        padding: 16px;
+      }
+
+      .schedule-reserve-btn {
+        width: 100% !important;
+        min-height: 44px;
+        margin-top: 8px;
+      }
+
+      /* Form Container, Inputs & Buttons */
+      .order-container {
+        padding: 20px 16px !important;
+        border-radius: var(--radius-md) !important;
+      }
+
+      .order-form-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+      }
+
+      .form-input, .form-select, .form-textarea {
+        font-size: 16px !important; /* Prevents auto-zoom in iOS Safari */
+        min-height: 48px;
+        padding: 12px 14px;
+      }
+
+      .form-textarea {
+        min-height: 80px;
+      }
+
+      .order-submit-btn {
+        width: 100% !important;
+        min-height: 52px;
+        padding: 14px 16px !important;
+        font-size: 0.98rem !important;
+        white-space: normal !important;
+        line-height: 1.35 !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+      }
+
+      .direct-order-options {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 14px !important;
+        text-align: center;
+        margin-top: 24px !important;
+        padding-top: 20px !important;
+      }
+
+      .direct-buttons {
+        flex-direction: column !important;
+        width: 100% !important;
+        gap: 10px !important;
+      }
+
+      .direct-buttons .btn {
+        width: 100% !important;
+        min-height: 46px !important;
+        font-size: 0.92rem !important;
+        justify-content: center;
+      }
+
+      /* Final CTA Section */
+      .cta-buttons {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 360px;
+        margin: 0 auto;
+        gap: 12px;
+      }
+
+      .cta-buttons .btn {
+        width: 100%;
+        min-height: 48px;
+        justify-content: center;
+      }
+
+      /* Contact Section */
+      .contact-grid {
+        grid-template-columns: 1fr !important;
+        gap: 24px !important;
+      }
+
+      .contact-card, .social-presence-card {
+        padding: 22px 16px !important;
+        border-radius: var(--radius-md) !important;
+      }
+
+      .contact-item {
+        font-size: 0.95rem;
+      }
+
+      .social-icons-only-row {
+        gap: 14px;
+      }
+
+      .social-icon-btn {
+        width: 48px;
+        height: 48px;
+      }
+
+      /* Footer */
+      #site-footer {
+        padding: 48px 0 32px 0;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        gap: 14px;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .hero-heading {
+        font-size: 1.75rem !important;
+      }
+      .section-title {
+        font-size: 1.55rem !important;
+      }
+      .btn {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -2477,32 +2753,24 @@
         <div class="social-presence-card">
           <h3 style="font-size: 1.3rem; font-weight: 600; margin-bottom: 8px;">Follow on Social Media</h3>
           <p style="color: var(--color-text-muted); font-size: 0.95rem;">
-            Join our community for regular food updates, behind-the-scenes video reels, and weekly meal announcements.
+            Follow our official social media pages for daily food updates, meal preparation videos, and weekly announcements.
           </p>
 
-          <div class="social-links-list">
-            <!-- Facebook -->
-            <a href="https://www.facebook.com/p/fatima_food_service-100088503529059/" target="_blank" rel="noopener noreferrer" class="social-link-item" aria-label="Visit Fatima Food Service on Facebook">
-              <div class="social-item-left">
-                <svg class="icon" style="color:#1877F2;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-                </svg>
-                <span>Facebook Page</span>
-              </div>
-              <span class="social-item-count">1.4k followers</span>
+          <div class="social-icons-only-row">
+            <!-- Facebook Icon Only -->
+            <a href="https://www.facebook.com/p/fatima_food_service-100088503529059/" target="_blank" rel="noopener noreferrer" class="social-icon-btn social-facebook" aria-label="Visit Fatima Food Service on Facebook" title="Facebook">
+              <svg class="social-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+              </svg>
             </a>
 
-            <!-- Instagram -->
-            <a href="https://www.instagram.com/fatima_food_service/reels/" target="_blank" rel="noopener noreferrer" class="social-link-item" aria-label="Visit Fatima Food Service on Instagram Reels">
-              <div class="social-item-left">
-                <svg class="icon" style="color:#E1306C;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                </svg>
-                <span>Instagram Reels</span>
-              </div>
-              <span class="social-item-count">3,326 followers</span>
+            <!-- Instagram Icon Only -->
+            <a href="https://www.instagram.com/fatima_food_service/reels/" target="_blank" rel="noopener noreferrer" class="social-icon-btn social-instagram" aria-label="Visit Fatima Food Service on Instagram" title="Instagram">
+              <svg class="social-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
             </a>
           </div>
         </div>
