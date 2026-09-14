@@ -1,0 +1,6 @@
+{
+  "name": "Fatima Food Service",
+  "description": "Homemade food service based in Islamabad providing fresh daily meals, weekly and monthly menu schedules, and easy WhatsApp order reservations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
