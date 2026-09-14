@@ -17,6 +17,12 @@
   <meta name="twitter:description" content="Fresh homemade meals in Islamabad with daily, weekly, and monthly menu schedules." />
   <meta name="twitter:image" content="https://iili.io/nfyTpln.png" />
 
+  
+  <!-- Performance & Preconnect Hints -->
+  <link rel="dns-prefetch" href="https://iili.io" />
+  <link rel="preconnect" href="https://iili.io" crossorigin />
+  <link rel="preload" as="image" href="https://iili.io/nfyTpln.png" />
+  <link rel="preload" as="image" href="https://iili.io/nBc6qbf.png" fetchpriority="high" />
   <!-- Google Font: Poppins -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -40,6 +46,23 @@
       "https://www.instagram.com/fatima_food_service/reels/"
     ]
   }
+  
+    // Back to top button visibility and click handler
+    const backToTopBtn = document.getElementById("back-to-top-btn");
+    if (backToTopBtn) {
+      window.addEventListener("scroll", function () {
+        if (window.scrollY > 400) {
+          backToTopBtn.classList.add("visible");
+        } else {
+          backToTopBtn.classList.remove("visible");
+        }
+      }, { passive: true });
+
+      backToTopBtn.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    }
+
   </script>
 
   <style>
@@ -1095,6 +1118,188 @@
       background-color: var(--color-primary);
     }
 
+    
+    /* Instant Touch & Tap Response */
+    html {
+      touch-action: manipulation;
+    }
+
+    button, a, input, select, textarea {
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Content Visibility for Rendering Performance */
+    .section-padding {
+      content-visibility: auto;
+      contain-intrinsic-size: 1px 600px;
+    }
+
+    #hero {
+      content-visibility: visible !important;
+    }
+
+    /* Responsive Typography Clamps */
+    .hero-heading {
+      font-size: clamp(2rem, 5.5vw, 3rem) !important;
+    }
+
+    .section-title {
+      font-size: clamp(1.7rem, 4vw, 2.3rem) !important;
+    }
+
+    .about-text h2, .packaging-details h2 {
+      font-size: clamp(1.6rem, 3.8vw, 2.1rem) !important;
+    }
+
+    /* Mobile Floating Quick Action Bar */
+    .mobile-quick-actions {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-top: 1px solid var(--color-border);
+      padding: 10px 14px;
+      padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+      z-index: 999;
+      box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.08);
+      gap: 10px;
+    }
+
+    .quick-action-btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      height: 48px;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: transform 0.15s ease, background-color 0.2s ease;
+    }
+
+    .quick-action-btn:active {
+      transform: scale(0.98);
+    }
+
+    .quick-call {
+      background-color: var(--color-surface-subtle);
+      color: var(--color-text);
+      border: 1px solid var(--color-border);
+    }
+
+    .quick-whatsapp {
+      background-color: var(--color-whatsapp);
+      color: #ffffff;
+      border: 1px solid transparent;
+    }
+
+    /* Floating Back to Top Button */
+    .back-to-top-btn {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--color-surface);
+      color: var(--color-primary);
+      border: 1px solid var(--color-border);
+      box-shadow: var(--shadow-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 90;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(12px);
+      transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+    }
+
+    .back-to-top-btn.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    /* Horizontal swipeable tabs on mobile */
+    @media (max-width: 768px) {
+      body {
+        padding-bottom: 74px; /* Space for sticky bottom bar */
+      }
+
+      .mobile-quick-actions {
+        display: flex;
+      }
+
+      .back-to-top-btn {
+        bottom: 86px;
+        right: 16px;
+      }
+
+      .week-tabs {
+        justify-content: flex-start !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding: 4px 6px 12px 6px !important;
+        gap: 8px;
+        width: 100%;
+      }
+
+      .week-tabs::-webkit-scrollbar {
+        display: none;
+      }
+
+      .week-tab-btn {
+        flex: 0 0 auto;
+        min-height: 44px;
+        padding: 10px 18px !important;
+      }
+
+      .section-padding {
+        padding-top: 56px;
+        padding-bottom: 56px;
+      }
+
+      .menu-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+      }
+
+      .schedule-days-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+      }
+
+      .about-highlights {
+        grid-template-columns: 1fr !important;
+      }
+
+      .why-us-grid {
+        grid-template-columns: 1fr !important;
+      }
+    }
+
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .menu-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+      }
+    }
+
+    @media (min-width: 1025px) {
+      .menu-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+      }
+    }
+
     /* Responsive Breakpoints */
     @media (max-width: 992px) {
       .about-grid, .packaging-grid, .contact-grid {
@@ -1163,7 +1368,7 @@
   <header id="site-header">
     <div class="container header-inner">
       <a href="#hero" class="header-logo-link" id="header-logo" aria-label="Fatima Food Service Home">
-        <img src="https://iili.io/nfyTpln.png" alt="Fatima Food Service" class="header-logo-img" />
+        <img decoding="async" src="https://iili.io/nfyTpln.png" alt="Fatima Food Service" class="header-logo-img" />
       </a>
 
       <!-- Desktop Navigation -->
@@ -1271,7 +1476,7 @@
         </div>
 
         <div class="about-image-wrap">
-          <img src="https://iili.io/nBlOJON.png" alt="Homemade food preparation at Fatima Food Service" loading="lazy" />
+          <img decoding="async" src="https://iili.io/nBlOJON.png" alt="Homemade food preparation at Fatima Food Service" loading="lazy" />
         </div>
       </div>
     </div>
@@ -1291,7 +1496,7 @@
         <!-- 1. Chicken Qorma -->
         <article class="menu-card" id="dish-chicken-qorma">
           <div class="menu-card-img-wrap">
-            <img src="https://iili.io/nBYB0GI.png" alt="Chicken Qorma homemade meal" class="menu-card-img" loading="lazy" onerror="this.onerror=null;this.src='https://freeimage.host/i/nBYB0GI';" />
+            <img decoding="async" src="https://iili.io/nBYB0GI.png" alt="Chicken Qorma homemade meal" class="menu-card-img" loading="lazy" onerror="this.onerror=null;this.src='https://freeimage.host/i/nBYB0GI';" />
           </div>
           <div class="menu-card-body">
             <h3 class="menu-card-title">Chicken Qorma</h3>
@@ -1310,7 +1515,7 @@
         <!-- 2. Mixed Vegetables -->
         <article class="menu-card" id="dish-mixed-vegetables">
           <div class="menu-card-img-wrap">
-            <img src="https://iili.io/nBY77uS.png" alt="Mixed Vegetables homemade meal" class="menu-card-img" loading="lazy" onerror="this.onerror=null;this.src='https://freeimage.host/i/nBY77uS';" />
+            <img decoding="async" src="https://iili.io/nBY77uS.png" alt="Mixed Vegetables homemade meal" class="menu-card-img" loading="lazy" onerror="this.onerror=null;this.src='https://freeimage.host/i/nBY77uS';" />
           </div>
           <div class="menu-card-body">
             <h3 class="menu-card-title">Mixed Vegetables</h3>
@@ -1329,7 +1534,7 @@
         <!-- 3. Daal Chawal -->
         <article class="menu-card" id="dish-daal-chawal">
           <div class="menu-card-img-wrap">
-            <img src="https://iili.io/nBY0YBt.png" alt="Daal Chawal homemade meal" class="menu-card-img" loading="lazy" onerror="this.onerror=null;this.src='https://freeimage.host/i/nBY0YBt';" />
+            <img decoding="async" src="https://iili.io/nBY0YBt.png" alt="Daal Chawal homemade meal" class="menu-card-img" loading="lazy" onerror="this.onerror=null;this.src='https://freeimage.host/i/nBY0YBt';" />
           </div>
           <div class="menu-card-body">
             <h3 class="menu-card-title">Daal Chawal</h3>
@@ -1348,7 +1553,7 @@
         <!-- 4. Keema Matar -->
         <article class="menu-card" id="dish-keema-matar">
           <div class="menu-card-img-wrap">
-            <img src="https://iili.io/nBYEX19.png" alt="Keema Matar homemade meal" class="menu-card-img" loading="lazy" onerror="this.onerror=null;this.src='https://freeimage.host/i/nBYEX19';" />
+            <img decoding="async" src="https://iili.io/nBYEX19.png" alt="Keema Matar homemade meal" class="menu-card-img" loading="lazy" onerror="this.onerror=null;this.src='https://freeimage.host/i/nBYEX19';" />
           </div>
           <div class="menu-card-body">
             <h3 class="menu-card-title">Keema Matar</h3>
@@ -1367,7 +1572,7 @@
         <!-- 5. Daal Mash -->
         <article class="menu-card" id="dish-daal-mash">
           <div class="menu-card-img-wrap">
-            <img src="https://iili.io/nBYMwDx.png" alt="Daal Mash homemade meal" class="menu-card-img" loading="lazy" onerror="this.onerror=null;this.src='https://freeimage.host/i/nBYMwDx';" />
+            <img decoding="async" src="https://iili.io/nBYMwDx.png" alt="Daal Mash homemade meal" class="menu-card-img" loading="lazy" onerror="this.onerror=null;this.src='https://freeimage.host/i/nBYMwDx';" />
           </div>
           <div class="menu-card-body">
             <h3 class="menu-card-title">Daal Mash</h3>
@@ -1386,7 +1591,7 @@
         <!-- 6. Chicken Biryani -->
         <article class="menu-card" id="dish-chicken-biryani">
           <div class="menu-card-img-wrap">
-            <img src="https://iili.io/nBYsu07.png" alt="Chicken Biryani homemade meal" class="menu-card-img" loading="lazy" onerror="this.onerror=null;this.src='https://freeimage.host/i/nBYsu07';" />
+            <img decoding="async" src="https://iili.io/nBYsu07.png" alt="Chicken Biryani homemade meal" class="menu-card-img" loading="lazy" onerror="this.onerror=null;this.src='https://freeimage.host/i/nBYsu07';" />
           </div>
           <div class="menu-card-body">
             <h3 class="menu-card-title">Chicken Biryani</h3>
@@ -1405,7 +1610,7 @@
         <!-- 7. Chicken Karahi -->
         <article class="menu-card" id="dish-chicken-karahi">
           <div class="menu-card-img-wrap">
-            <img src="https://iili.io/nBYmC2p.png" alt="Chicken Karahi homemade meal" class="menu-card-img" loading="lazy" onerror="this.onerror=null;this.src='https://freeimage.host/i/nBYmC2p';" />
+            <img decoding="async" src="https://iili.io/nBYmC2p.png" alt="Chicken Karahi homemade meal" class="menu-card-img" loading="lazy" onerror="this.onerror=null;this.src='https://freeimage.host/i/nBYmC2p';" />
           </div>
           <div class="menu-card-body">
             <h3 class="menu-card-title">Chicken Karahi</h3>
@@ -1424,7 +1629,7 @@
         <!-- 8. Aloo Palak -->
         <article class="menu-card" id="dish-aloo-palak">
           <div class="menu-card-img-wrap">
-            <img src="https://iili.io/nBaz2wu.png" alt="Aloo Palak homemade meal" class="menu-card-img" loading="lazy" onerror="this.onerror=null;this.src='https://freeimage.host/i/nBaz2wu';" />
+            <img decoding="async" src="https://iili.io/nBaz2wu.png" alt="Aloo Palak homemade meal" class="menu-card-img" loading="lazy" onerror="this.onerror=null;this.src='https://freeimage.host/i/nBaz2wu';" />
           </div>
           <div class="menu-card-body">
             <h3 class="menu-card-title">Aloo Palak</h3>
@@ -1443,7 +1648,7 @@
         <!-- 9. Chicken Pulao -->
         <article class="menu-card" id="dish-chicken-pulao">
           <div class="menu-card-img-wrap">
-            <img src="https://iili.io/nBaINLJ.png" alt="Chicken Pulao homemade meal" class="menu-card-img" loading="lazy" onerror="this.onerror=null;this.src='https://freeimage.host/i/nBaINLJ';" />
+            <img decoding="async" src="https://iili.io/nBaINLJ.png" alt="Chicken Pulao homemade meal" class="menu-card-img" loading="lazy" onerror="this.onerror=null;this.src='https://freeimage.host/i/nBaINLJ';" />
           </div>
           <div class="menu-card-body">
             <h3 class="menu-card-title">Chicken Pulao</h3>
@@ -1462,7 +1667,7 @@
         <!-- 10. Daal Chana -->
         <article class="menu-card" id="dish-daal-chana">
           <div class="menu-card-img-wrap">
-            <img src="https://iili.io/nBa0i0X.png" alt="Daal Chana homemade meal" class="menu-card-img" loading="lazy" onerror="this.onerror=null;this.src='https://freeimage.host/i/nBa0i0X';" />
+            <img decoding="async" src="https://iili.io/nBa0i0X.png" alt="Daal Chana homemade meal" class="menu-card-img" loading="lazy" onerror="this.onerror=null;this.src='https://freeimage.host/i/nBa0i0X';" />
           </div>
           <div class="menu-card-body">
             <h3 class="menu-card-title">Daal Chana</h3>
@@ -1481,7 +1686,7 @@
         <!-- 11. Chicken Kofta -->
         <article class="menu-card" id="dish-chicken-kofta">
           <div class="menu-card-img-wrap">
-            <img src="https://iili.io/nBahkts.png" alt="Chicken Kofta homemade meal" class="menu-card-img" loading="lazy" onerror="this.onerror=null;this.src='https://freeimage.host/i/nBahkts';" />
+            <img decoding="async" src="https://iili.io/nBahkts.png" alt="Chicken Kofta homemade meal" class="menu-card-img" loading="lazy" onerror="this.onerror=null;this.src='https://freeimage.host/i/nBahkts';" />
           </div>
           <div class="menu-card-body">
             <h3 class="menu-card-title">Chicken Kofta</h3>
@@ -1575,10 +1780,10 @@
       <div class="packaging-grid">
         <div class="packaging-gallery">
           <div class="packaging-img-card">
-            <img src="https://iili.io/nBlBDkF.png" alt="Fatima Food Service secure food packaging" loading="lazy" />
+            <img decoding="async" src="https://iili.io/nBlBDkF.png" alt="Fatima Food Service secure food packaging" loading="lazy" />
           </div>
           <div class="packaging-img-card">
-            <img src="https://iili.io/nBlusJR.png" alt="Fatima Food Service meal presentation containers" loading="lazy" />
+            <img decoding="async" src="https://iili.io/nBlusJR.png" alt="Fatima Food Service meal presentation containers" loading="lazy" />
           </div>
         </div>
 
@@ -1645,7 +1850,7 @@
               <span class="schedule-day-name">Monday</span>
             </div>
             <div class="schedule-dish-wrap">
-              <img src="https://iili.io/nBY0YBt.png" alt="Daal Chawal homemade meal" class="schedule-dish-thumb" loading="lazy" />
+              <img decoding="async" src="https://iili.io/nBY0YBt.png" alt="Daal Chawal homemade meal" class="schedule-dish-thumb" loading="lazy" />
               <div class="schedule-dish-info">
                 <h4>Daal Chawal</h4>
                 <p>Served with Salad & Raita</p>
@@ -1662,7 +1867,7 @@
               <span class="schedule-day-name">Tuesday</span>
             </div>
             <div class="schedule-dish-wrap">
-              <img src="https://iili.io/nBYB0GI.png" alt="Chicken Qorma homemade meal" class="schedule-dish-thumb" loading="lazy" />
+              <img decoding="async" src="https://iili.io/nBYB0GI.png" alt="Chicken Qorma homemade meal" class="schedule-dish-thumb" loading="lazy" />
               <div class="schedule-dish-info">
                 <h4>Chicken Qorma</h4>
                 <p>Served with 2 Chapati, Salad & Raita</p>
@@ -1679,7 +1884,7 @@
               <span class="schedule-day-name">Wednesday</span>
             </div>
             <div class="schedule-dish-wrap">
-              <img src="https://iili.io/nBY77uS.png" alt="Mixed Vegetables homemade meal" class="schedule-dish-thumb" loading="lazy" />
+              <img decoding="async" src="https://iili.io/nBY77uS.png" alt="Mixed Vegetables homemade meal" class="schedule-dish-thumb" loading="lazy" />
               <div class="schedule-dish-info">
                 <h4>Mixed Vegetables</h4>
                 <p>Served with 2 Chapati, Salad & Raita</p>
@@ -1696,7 +1901,7 @@
               <span class="schedule-day-name">Thursday</span>
             </div>
             <div class="schedule-dish-wrap">
-              <img src="https://iili.io/nBYsu07.png" alt="Chicken Biryani homemade meal" class="schedule-dish-thumb" loading="lazy" />
+              <img decoding="async" src="https://iili.io/nBYsu07.png" alt="Chicken Biryani homemade meal" class="schedule-dish-thumb" loading="lazy" />
               <div class="schedule-dish-info">
                 <h4>Chicken Biryani</h4>
                 <p>Served with Salad & Raita</p>
@@ -1713,7 +1918,7 @@
               <span class="schedule-day-name">Friday</span>
             </div>
             <div class="schedule-dish-wrap">
-              <img src="https://iili.io/nBYMwDx.png" alt="Daal Mash homemade meal" class="schedule-dish-thumb" loading="lazy" />
+              <img decoding="async" src="https://iili.io/nBYMwDx.png" alt="Daal Mash homemade meal" class="schedule-dish-thumb" loading="lazy" />
               <div class="schedule-dish-info">
                 <h4>Daal Mash</h4>
                 <p>Served with 2 Chapati, Salad & Raita</p>
@@ -1730,7 +1935,7 @@
               <span class="schedule-day-name">Saturday</span>
             </div>
             <div class="schedule-dish-wrap">
-              <img src="https://iili.io/nBYmC2p.png" alt="Chicken Karahi homemade meal" class="schedule-dish-thumb" loading="lazy" />
+              <img decoding="async" src="https://iili.io/nBYmC2p.png" alt="Chicken Karahi homemade meal" class="schedule-dish-thumb" loading="lazy" />
               <div class="schedule-dish-info">
                 <h4>Chicken Karahi</h4>
                 <p>Served with 2 Chapati, Salad & Raita</p>
@@ -1752,7 +1957,7 @@
               <span class="schedule-day-name">Monday</span>
             </div>
             <div class="schedule-dish-wrap">
-              <img src="https://iili.io/nBa0i0X.png" alt="Daal Chana homemade meal" class="schedule-dish-thumb" loading="lazy" />
+              <img decoding="async" src="https://iili.io/nBa0i0X.png" alt="Daal Chana homemade meal" class="schedule-dish-thumb" loading="lazy" />
               <div class="schedule-dish-info">
                 <h4>Daal Chana</h4>
                 <p>Served with 2 Chapati, Salad & Raita</p>
@@ -1769,7 +1974,7 @@
               <span class="schedule-day-name">Tuesday</span>
             </div>
             <div class="schedule-dish-wrap">
-              <img src="https://iili.io/nBaINLJ.png" alt="Chicken Pulao homemade meal" class="schedule-dish-thumb" loading="lazy" />
+              <img decoding="async" src="https://iili.io/nBaINLJ.png" alt="Chicken Pulao homemade meal" class="schedule-dish-thumb" loading="lazy" />
               <div class="schedule-dish-info">
                 <h4>Chicken Pulao</h4>
                 <p>Served with Salad & Raita</p>
@@ -1786,7 +1991,7 @@
               <span class="schedule-day-name">Wednesday</span>
             </div>
             <div class="schedule-dish-wrap">
-              <img src="https://iili.io/nBaz2wu.png" alt="Aloo Palak homemade meal" class="schedule-dish-thumb" loading="lazy" />
+              <img decoding="async" src="https://iili.io/nBaz2wu.png" alt="Aloo Palak homemade meal" class="schedule-dish-thumb" loading="lazy" />
               <div class="schedule-dish-info">
                 <h4>Aloo Palak</h4>
                 <p>Served with 2 Chapati, Salad & Raita</p>
@@ -1803,7 +2008,7 @@
               <span class="schedule-day-name">Thursday</span>
             </div>
             <div class="schedule-dish-wrap">
-              <img src="https://iili.io/nBahkts.png" alt="Chicken Kofta homemade meal" class="schedule-dish-thumb" loading="lazy" />
+              <img decoding="async" src="https://iili.io/nBahkts.png" alt="Chicken Kofta homemade meal" class="schedule-dish-thumb" loading="lazy" />
               <div class="schedule-dish-info">
                 <h4>Chicken Kofta</h4>
                 <p>Served with 2 Chapati, Salad & Raita</p>
@@ -1820,7 +2025,7 @@
               <span class="schedule-day-name">Friday</span>
             </div>
             <div class="schedule-dish-wrap">
-              <img src="https://iili.io/nBYEX19.png" alt="Keema Matar homemade meal" class="schedule-dish-thumb" loading="lazy" />
+              <img decoding="async" src="https://iili.io/nBYEX19.png" alt="Keema Matar homemade meal" class="schedule-dish-thumb" loading="lazy" />
               <div class="schedule-dish-info">
                 <h4>Keema Matar</h4>
                 <p>Served with 2 Chapati, Salad & Raita</p>
@@ -1837,7 +2042,7 @@
               <span class="schedule-day-name">Saturday</span>
             </div>
             <div class="schedule-dish-wrap">
-              <img src="https://iili.io/nBYsu07.png" alt="Chicken Biryani homemade meal" class="schedule-dish-thumb" loading="lazy" />
+              <img decoding="async" src="https://iili.io/nBYsu07.png" alt="Chicken Biryani homemade meal" class="schedule-dish-thumb" loading="lazy" />
               <div class="schedule-dish-info">
                 <h4>Chicken Biryani</h4>
                 <p>Served with Salad & Raita</p>
@@ -1859,7 +2064,7 @@
               <span class="schedule-day-name">Monday</span>
             </div>
             <div class="schedule-dish-wrap">
-              <img src="https://iili.io/nBY77uS.png" alt="Mixed Vegetables homemade meal" class="schedule-dish-thumb" loading="lazy" />
+              <img decoding="async" src="https://iili.io/nBY77uS.png" alt="Mixed Vegetables homemade meal" class="schedule-dish-thumb" loading="lazy" />
               <div class="schedule-dish-info">
                 <h4>Mixed Vegetables</h4>
                 <p>Served with 2 Chapati, Salad & Raita</p>
@@ -1876,7 +2081,7 @@
               <span class="schedule-day-name">Tuesday</span>
             </div>
             <div class="schedule-dish-wrap">
-              <img src="https://iili.io/nBYmC2p.png" alt="Chicken Karahi homemade meal" class="schedule-dish-thumb" loading="lazy" />
+              <img decoding="async" src="https://iili.io/nBYmC2p.png" alt="Chicken Karahi homemade meal" class="schedule-dish-thumb" loading="lazy" />
               <div class="schedule-dish-info">
                 <h4>Chicken Karahi</h4>
                 <p>Served with 2 Chapati, Salad & Raita</p>
@@ -1893,7 +2098,7 @@
               <span class="schedule-day-name">Wednesday</span>
             </div>
             <div class="schedule-dish-wrap">
-              <img src="https://iili.io/nBY0YBt.png" alt="Daal Chawal homemade meal" class="schedule-dish-thumb" loading="lazy" />
+              <img decoding="async" src="https://iili.io/nBY0YBt.png" alt="Daal Chawal homemade meal" class="schedule-dish-thumb" loading="lazy" />
               <div class="schedule-dish-info">
                 <h4>Daal Chawal</h4>
                 <p>Served with Salad & Raita</p>
@@ -1910,7 +2115,7 @@
               <span class="schedule-day-name">Thursday</span>
             </div>
             <div class="schedule-dish-wrap">
-              <img src="https://iili.io/nBYB0GI.png" alt="Chicken Qorma homemade meal" class="schedule-dish-thumb" loading="lazy" />
+              <img decoding="async" src="https://iili.io/nBYB0GI.png" alt="Chicken Qorma homemade meal" class="schedule-dish-thumb" loading="lazy" />
               <div class="schedule-dish-info">
                 <h4>Chicken Qorma</h4>
                 <p>Served with 2 Chapati, Salad & Raita</p>
@@ -1927,7 +2132,7 @@
               <span class="schedule-day-name">Friday</span>
             </div>
             <div class="schedule-dish-wrap">
-              <img src="https://iili.io/nBYMwDx.png" alt="Daal Mash homemade meal" class="schedule-dish-thumb" loading="lazy" />
+              <img decoding="async" src="https://iili.io/nBYMwDx.png" alt="Daal Mash homemade meal" class="schedule-dish-thumb" loading="lazy" />
               <div class="schedule-dish-info">
                 <h4>Daal Mash</h4>
                 <p>Served with 2 Chapati, Salad & Raita</p>
@@ -1944,7 +2149,7 @@
               <span class="schedule-day-name">Saturday</span>
             </div>
             <div class="schedule-dish-wrap">
-              <img src="https://iili.io/nBaINLJ.png" alt="Chicken Pulao homemade meal" class="schedule-dish-thumb" loading="lazy" />
+              <img decoding="async" src="https://iili.io/nBaINLJ.png" alt="Chicken Pulao homemade meal" class="schedule-dish-thumb" loading="lazy" />
               <div class="schedule-dish-info">
                 <h4>Chicken Pulao</h4>
                 <p>Served with Salad & Raita</p>
@@ -1966,7 +2171,7 @@
               <span class="schedule-day-name">Monday</span>
             </div>
             <div class="schedule-dish-wrap">
-              <img src="https://iili.io/nBaz2wu.png" alt="Aloo Palak homemade meal" class="schedule-dish-thumb" loading="lazy" />
+              <img decoding="async" src="https://iili.io/nBaz2wu.png" alt="Aloo Palak homemade meal" class="schedule-dish-thumb" loading="lazy" />
               <div class="schedule-dish-info">
                 <h4>Aloo Palak</h4>
                 <p>Served with 2 Chapati, Salad & Raita</p>
@@ -1983,7 +2188,7 @@
               <span class="schedule-day-name">Tuesday</span>
             </div>
             <div class="schedule-dish-wrap">
-              <img src="https://iili.io/nBYEX19.png" alt="Keema Matar homemade meal" class="schedule-dish-thumb" loading="lazy" />
+              <img decoding="async" src="https://iili.io/nBYEX19.png" alt="Keema Matar homemade meal" class="schedule-dish-thumb" loading="lazy" />
               <div class="schedule-dish-info">
                 <h4>Keema Matar</h4>
                 <p>Served with 2 Chapati, Salad & Raita</p>
@@ -2000,7 +2205,7 @@
               <span class="schedule-day-name">Wednesday</span>
             </div>
             <div class="schedule-dish-wrap">
-              <img src="https://iili.io/nBa0i0X.png" alt="Daal Chana homemade meal" class="schedule-dish-thumb" loading="lazy" />
+              <img decoding="async" src="https://iili.io/nBa0i0X.png" alt="Daal Chana homemade meal" class="schedule-dish-thumb" loading="lazy" />
               <div class="schedule-dish-info">
                 <h4>Daal Chana</h4>
                 <p>Served with 2 Chapati, Salad & Raita</p>
@@ -2017,7 +2222,7 @@
               <span class="schedule-day-name">Thursday</span>
             </div>
             <div class="schedule-dish-wrap">
-              <img src="https://iili.io/nBahkts.png" alt="Chicken Kofta homemade meal" class="schedule-dish-thumb" loading="lazy" />
+              <img decoding="async" src="https://iili.io/nBahkts.png" alt="Chicken Kofta homemade meal" class="schedule-dish-thumb" loading="lazy" />
               <div class="schedule-dish-info">
                 <h4>Chicken Kofta</h4>
                 <p>Served with 2 Chapati, Salad & Raita</p>
@@ -2034,7 +2239,7 @@
               <span class="schedule-day-name">Friday</span>
             </div>
             <div class="schedule-dish-wrap">
-              <img src="https://iili.io/nBYsu07.png" alt="Chicken Biryani homemade meal" class="schedule-dish-thumb" loading="lazy" />
+              <img decoding="async" src="https://iili.io/nBYsu07.png" alt="Chicken Biryani homemade meal" class="schedule-dish-thumb" loading="lazy" />
               <div class="schedule-dish-info">
                 <h4>Chicken Biryani</h4>
                 <p>Served with Salad & Raita</p>
@@ -2051,7 +2256,7 @@
               <span class="schedule-day-name">Saturday</span>
             </div>
             <div class="schedule-dish-wrap">
-              <img src="https://iili.io/nBYmC2p.png" alt="Chicken Karahi homemade meal" class="schedule-dish-thumb" loading="lazy" />
+              <img decoding="async" src="https://iili.io/nBYmC2p.png" alt="Chicken Karahi homemade meal" class="schedule-dish-thumb" loading="lazy" />
               <div class="schedule-dish-info">
                 <h4>Chicken Karahi</h4>
                 <p>Served with 2 Chapati, Salad & Raita</p>
@@ -2088,7 +2293,7 @@
             <!-- Phone Number -->
             <div class="form-group">
               <label for="order-phone" class="form-label">Phone Number <span class="req">*</span></label>
-              <input type="tel" id="order-phone" name="phone" class="form-input" placeholder="03xx xxxxxxx" required />
+              <input type="tel" inputmode="tel" autocomplete="tel" id="order-phone" name="phone" class="form-input" placeholder="03xx xxxxxxx" required />
             </div>
 
             <!-- Select Dish -->
@@ -2114,7 +2319,7 @@
             <!-- Servings / Quantity -->
             <div class="form-group">
               <label for="order-quantity" class="form-label">Number of Servings <span class="req">*</span></label>
-              <input type="number" id="order-quantity" name="quantity" class="form-input" min="1" max="50" value="1" required />
+              <input type="number" inputmode="numeric" id="order-quantity" name="quantity" class="form-input" min="1" max="50" value="1" required />
             </div>
 
             <!-- Preferred Date -->
@@ -2310,7 +2515,7 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-col">
-          <img src="https://iili.io/nfyTpln.png" alt="Fatima Food Service" class="footer-logo-img" />
+          <img decoding="async" src="https://iili.io/nfyTpln.png" alt="Fatima Food Service" class="footer-logo-img" />
           <p style="max-width: 380px; font-size: 0.95rem; line-height: 1.6; margin-top: 10px;">
             Wholesome homemade meals cooked with care for everyday dining in Islamabad, Pakistan.
           </p>
@@ -2361,6 +2566,31 @@
       </div>
     </div>
   </footer>
+
+  <!-- Mobile Quick Action Bar (Call & WhatsApp) -->
+  <aside class="mobile-quick-actions" id="mobile-quick-bar" aria-label="Quick Mobile Actions">
+    <a href="tel:03495718949" class="quick-action-btn quick-call" aria-label="Call Fatima Food Service">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+      </svg>
+      <span>Call Now</span>
+    </a>
+    <a href="https://wa.me/923495718949" target="_blank" rel="noopener noreferrer" class="quick-action-btn quick-whatsapp" aria-label="WhatsApp Fatima Food Service">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+      </svg>
+      <span>WhatsApp</span>
+    </a>
+  </aside>
+
+  <!-- Back to Top Button -->
+  <button type="button" id="back-to-top-btn" class="back-to-top-btn" aria-label="Scroll back to top">
+    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="12" y1="19" x2="12" y2="5"></line>
+      <polyline points="5 12 12 5 19 12"></polyline>
+    </svg>
+  </button>
+  
 
   <!-- Vanilla JavaScript -->
   <script>
